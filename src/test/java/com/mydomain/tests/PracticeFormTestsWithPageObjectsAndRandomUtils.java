@@ -34,19 +34,17 @@ public class PracticeFormTestsWithPageObjectsAndRandomUtils {
                 .randomCurrentAddress(faker.address().fullAddress())
                 .randomUserNumber(faker.phoneNumber().subscriberNumber(10));
 
-//        $("label.custom-control-label").shouldHave(text("Male")).click();
         $("#genterWrapper").$(byText("Male")).click();
-//        $("#userNumber").setValue("4951234567");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("April");
-        $(".react-datepicker__year-select").selectOption("1961");
-//        $(".react-datepicker__day--012:not(.react-datepicker__day--outside-month)").click();
-        $("[aria-label$='April 12th, 1961']").click();
+
+        registrationPage.calendarComponent.setBirthDate("12", "April", "1961");
+
         $("#subjectsInput").setValue("e");
         $(".subjects-auto-complete__menu #react-select-2-option-0").click();
+
         $("label[for=hobbies-checkbox-1]").click();
         $("label[for=hobbies-checkbox-2]").click();
         $("label[for=hobbies-checkbox-3]").click();
+
         $("#uploadPicture").uploadFromClasspath("img/1.png");
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();

@@ -2,12 +2,15 @@ package com.mydomain.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
+import com.mydomain.pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
+
+    public CalendarComponent calendarComponent = new CalendarComponent();
 
     SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
