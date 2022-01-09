@@ -11,9 +11,6 @@ public class CalendarComponent {
         $(".react-datepicker__year-select").selectOption(year);
         String dayLocator = format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)",day);
         $(dayLocator).click();
-//        $(".react-datepicker__day--012:not(.react-datepicker__day--outside-month)").click();
-//        $("[aria-label$='April 12th, 1961']").click();
-
     }
 
 }
