@@ -30,7 +30,7 @@ public class PracticeFormTestsWithPageObjectsAndFaker {
                 .hobbiesCheckBoxSelect(hobbieSports)
                 .hobbiesCheckBoxSelect(hobbieReading)
                 .hobbiesCheckBoxSelect(hobbieMusic)
-                .uploadFile(imgName)
+                .uploadFile("img/1.png")
                 .fillStateField()
                 .fillCityField();
         registrationPage.calendarComponent.setBirthDate("12", "April", "1961");
@@ -44,8 +44,8 @@ public class PracticeFormTestsWithPageObjectsAndFaker {
                 .assertsForm("Mobile",userNumber)
                 .assertsForm("Date of Birth", "12 April,1961")
                 .assertsForm("Subjects", subject)
-                .assertsForm("Hobbies", hobbieSports + "," + " " + hobbieReading + " " + hobbieMusic)
-                .assertsForm("Picture", imgName)
+                .assertsForm("Hobbies", hobbieSports + "," + " " + hobbieReading + "," + " " + hobbieMusic)
+                .assertsForm("Picture", "1.png")
                 .assertsForm("Address", currentAddress)
                 .assertsForm("State and City", state + " " + city)
                 .closeTable();

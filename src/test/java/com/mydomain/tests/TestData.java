@@ -13,7 +13,6 @@ public class TestData {
     public static String hobbieSports = "Sports";
     public static String hobbieReading = "Reading";
     public static String hobbieMusic = "Music";
-    public static String imgName = "img/1.png";
     public static String subject = "English";
     public static String state = "NCR";
     public static String city = "Delhi";
