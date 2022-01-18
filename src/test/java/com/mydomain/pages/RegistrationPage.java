@@ -1,38 +1,34 @@
 package com.mydomain.pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.mydomain.pages.components.AssertsComponent;
 import com.mydomain.pages.components.CalendarComponent;
-import com.mydomain.pages.components.SubjectInputComponent;
+import com.mydomain.tests.TestData;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
     public CalendarComponent calendarComponent = new CalendarComponent();
-    public SubjectInputComponent subjectInputComponent = new SubjectInputComponent();
-    public AssertsComponent assertsComponent = new AssertsComponent();
 
-    SelenideElement firstNameInput = $("#firstName"),
+    private static final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
-            currentAddressInpum = $("#currentAddress"),
+            currentAddressInput = $("#currentAddress"),
             userEmailInput = $("#userEmail"),
             userNumberInput = $("#userNumber"),
-            genderSelectMaleInput = $("#genterWrapper").$(byText("Male")),
-            genderSelectFemaleInput = $("#genterWrapper").$(byText("Female")),
-            genderSelectOtherInput = $("#genterWrapper").$(byText("Other")),
-            hobbiesSportInput = $("[for='hobbies-checkbox-1']"),
-            hobbiesReadingInput = $("[for='hobbies-checkbox-2']"),
-            hobbiesMusicInput = $("[for='hobbies-checkbox-3']"),
+            genderSelectInput = $("#genterWrapper"),
+            hobbiesCheckBoxInput = $("#hobbiesWrapper"),
             uploadFileInput = $("#uploadPicture"),
             stateFieldSelect = $("#state"),
-            stateFieldInput = $("#stateCity-wrapper").$(byText("NCR")),
+            stateFieldInput = $("#stateCity-wrapper").$(byText(TestData.state)),
             cityFieldSelect = $("#city"),
-            cityFieldInput = $("#stateCity-wrapper").$(byText("Delhi")),
-            submitButtonPush = $("#submit");
+            cityFieldInput = $("#stateCity-wrapper").$(byText(TestData.city)),
+            submitButtonPush = $("#submit"),
+            resultsTableHeader = $("#example-modal-sizes-title-lg"),
+            resultsTableBody = $(".modal-body");
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -40,57 +36,44 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage randomFirstName(String value) {
+    public RegistrationPage typeFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage randomLastName(String value) {
+    public RegistrationPage typeLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage randomUserEmail(String value) {
+    public RegistrationPage typeUserEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage randomCurrentAddress(String value) {
-        currentAddressInpum.setValue(value);
+    public RegistrationPage typeCurrentAddress(String value) {
+        currentAddressInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage randomUserNumber(String value) {
+    public RegistrationPage typeUserNumber(String value) {
         userNumberInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage genderSelectMale() {
-        genderSelectMaleInput.click();
-        return this;
-    }
-    public RegistrationPage genderSelectFemale() {
-        genderSelectFemaleInput.click();
+    public RegistrationPage fillSubjectField() {
+        $("#subjectsInput").setValue("e");
+        $(".subjects-auto-complete__menu #react-select-2-option-0").click();
         return this;
     }
 
-    public RegistrationPage genderSelectOther() {
-        genderSelectOtherInput.click();
+    public RegistrationPage genderSelectGender(String gender) {
+        genderSelectInput.$(byText(gender)).click();
         return this;
     }
 
-    public RegistrationPage hobbiesSportsCheckboxSelect() {
-        hobbiesSportInput.click();
-        return this;
-    }
-
-    public RegistrationPage hobbiesReadingCheckboxSelect() {
-        hobbiesReadingInput.click();
-        return this;
-    }
-
-    public RegistrationPage hobbiesMusicCheckboxSelect() {
-        hobbiesMusicInput.click();
+    public RegistrationPage hobbiesCheckBoxSelect(String hobbie) {
+        hobbiesCheckBoxInput.$(byText(hobbie)).click();
         return this;
     }
 
@@ -100,18 +83,39 @@ public class RegistrationPage {
     }
 
     public RegistrationPage fillStateField() {
-        stateFieldSelect.click();
+        stateFieldSelect.scrollTo().click();
         stateFieldInput.click();
         return this;
     }
 
     public RegistrationPage fillCityField() {
-        cityFieldSelect.click();
+        cityFieldSelect.scrollTo().click();
         cityFieldInput.click();
         return this;
     }
 
     public void pushSubmitButton() {
         submitButtonPush.click();
+    }
+
+    public RegistrationPage assertFormTitle(String title) {
+        resultsTableHeader.shouldHave(text(title));
+        return this;
+    }
+
+    public void assertFormTitleNegative() {
+        resultsTableHeader.shouldNotBe(visible);
+    }
+
+    public RegistrationPage assertsForm(String key, String value) {
+        resultsTableBody.$(byText(key)).parent().shouldHave(text(value));
+        return this;
+    }
+
+    public void closeTable() {
+        ElementsCollection closeBannerButton = $$("#close-fixedban");
+        if (closeBannerButton.size() > 0 && closeBannerButton.get(0).isDisplayed())
+            closeBannerButton.get(0).click();
+        $("#closeLargeModal").scrollTo().click();
     }
 }
