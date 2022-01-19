@@ -19,6 +19,7 @@ public class RegistrationPage {
             currentAddressInput = $("#currentAddress"),
             userEmailInput = $("#userEmail"),
             userNumberInput = $("#userNumber"),
+            subjectInput = $("#subjectsInput"),
             genderSelectInput = $("#genterWrapper"),
             hobbiesCheckBoxInput = $("#hobbiesWrapper"),
             uploadFileInput = $("#uploadPicture"),
@@ -61,9 +62,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage fillSubjectField() {
-        $("#subjectsInput").setValue("e");
-        $(".subjects-auto-complete__menu #react-select-2-option-0").click();
+    public RegistrationPage fillSubjectField(String value) {
+        subjectInput.setValue(value);
+//        $(".subjects-auto-complete__menu #react-select-2-option-0").click();
         return this;
     }
 

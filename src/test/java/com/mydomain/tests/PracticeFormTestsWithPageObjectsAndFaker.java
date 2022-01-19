@@ -25,7 +25,7 @@ public class PracticeFormTestsWithPageObjectsAndFaker {
                 .typeUserEmail(userEmail)
                 .typeUserNumber(userNumber)
                 .typeCurrentAddress(currentAddress)
-                .fillSubjectField()
+                .fillSubjectField(subject)
                 .genderSelectGender(gender)
                 .hobbiesCheckBoxSelect(hobbieSports)
                 .hobbiesCheckBoxSelect(hobbieReading)
