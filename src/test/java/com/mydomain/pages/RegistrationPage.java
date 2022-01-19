@@ -63,7 +63,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage fillSubjectField(String value) {
-        subjectInput.setValue(value);
+        subjectInput.setValue(value).pressEnter();
 //        $(".subjects-auto-complete__menu #react-select-2-option-0").click();
         return this;
     }
