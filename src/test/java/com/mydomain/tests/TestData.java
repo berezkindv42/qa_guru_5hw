@@ -10,9 +10,9 @@ public class TestData {
     public static String userNumber = faker.phoneNumber().subscriberNumber(10);
     public static String currentAddress = faker.address().fullAddress();
     public static String gender = "Male";
-    public static String hobbieSports = "Sports";
-    public static String hobbieReading = "Reading";
-    public static String hobbieMusic = "Music";
+    public static String hobbiesSports = "Sports";
+    public static String hobbiesReading = "Reading";
+    public static String hobbiesMusic = "Music";
     public static String subject = "English";
     public static String state = "NCR";
     public static String city = "Delhi";
